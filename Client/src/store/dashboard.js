@@ -10,14 +10,14 @@ export default {
     }
   },
   actions: {
+    setDashboard ({commit}, payload) {
+      commit('setDashboard', payload)
+    },
     async fetchDashboard ({commit}) {
       commit('clearError')
       try {
-        console.log('test-1')
         let url = 'http://localhost:5000/dashboard'
         let response = await axios.get(url)
-        console.log('test-2')
-        console.log(response)
         commit('setDashboard', response.data)
       } catch (error) {
         commit('setError', error.message)

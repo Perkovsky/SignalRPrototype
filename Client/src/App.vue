@@ -53,9 +53,14 @@ export default {
       return this.$store.getters.error
     }
   },
-  mounted () {
-     this.$store.dispatch('fetchDashboard')
-  }
+  sockets: {
+    ShowDashboard (data) {
+      this.$store.dispatch('setDashboard', data)
+    }
+  },
+  // mounted () {
+  //   this.$store.dispatch('fetchDashboard')
+  // }
 }
 </script>
 

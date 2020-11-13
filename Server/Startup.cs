@@ -16,13 +16,7 @@ namespace Server
 
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddCors(o => o.AddPolicy("CorsPolicy", builder =>
-			{
-				builder.AllowAnyOrigin()
-					   .AllowAnyMethod()
-					   .AllowAnyHeader();
-			}));
-
+			services.AddCors();
 			services.AddSignalR();
 			services.AddHostedService<Worker>();
 			services.AddControllers();
@@ -35,7 +29,15 @@ namespace Server
 				app.UseDeveloperExceptionPage();
 
 			app.UseRouting();
-			app.UseCors("CorsPolicy");
+			
+			app.UseCors(builder => builder
+				.AllowAnyOrigin()
+				.AllowAnyHeader()
+				.AllowAnyMethod()
+				.WithOrigins("http://localhost:8080")
+				.AllowCredentials()
+			);
+
 			app.UseAuthorization();
 
 			app.UseEndpoints(endpoints =>

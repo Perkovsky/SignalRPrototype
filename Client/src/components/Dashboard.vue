@@ -23,7 +23,7 @@ export default {
   computed: {
     dashboard () {
       return this.$store.getters.dashboard
-    },
+    }
   }
 }
 </script>
