@@ -1,6 +1,6 @@
 ﻿namespace Server.Models
 {
-	public class Dashboard
+	public class DashboardModel
 	{
 		public int C1 { get; set; }
 		public int C2 { get; set; }
