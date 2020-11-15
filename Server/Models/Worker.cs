@@ -25,8 +25,9 @@ namespace Server.Models
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                _logger.LogInformation("Worker running at: {Time}", DateTime.Now);
-                await _dashboardHub.Clients.All.ShowDashboard(_service.Generate());
+                var dashboard = _service.Generate();
+                _logger.LogInformation($"Dashboard => {dashboard}");
+                await _dashboardHub.Clients.All.ShowDashboard(dashboard);
                 await Task.Delay(1000);
             }
         }
